@@ -1,0 +1,182 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍄밍디's 카드뉴스🍄</title>
+    <style> 
+    body{
+        width: 100%;
+        height:100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction:column;
+        background-color :plum;
+
+    }
+    .hello{
+        margin-top:100px;
+        font-size:50px;
+        font-family :TmonMonsori;
+    }
+    .h{
+        text-align:center;
+        font-family : 배달의민족 주아;
+        
+
+    }
+   
+    figure.change {
+        font-family: 배달의민족 주아;
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        min-width: 230px;
+        max-width: 315px;
+        max-height: 230px;
+        width: 100%;
+        color:white;
+        text-align:center;
+        background-color: white;
+        font-size: 16px;
+        
+    }   
+    figure.change * {
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+     -webkit-transition: all 0.35s ease;
+     transition: all 0.35s ease;
+    }
+    figure.change img {
+     max-width: 100%;
+     -webkit-transition-delay: 0.2s;
+     transition-delay: 0.2s;
+     backface-visibility: hidden;
+     background-color:black;
+    }
+    figure.change figcaption {
+     position: absolute;
+     top: 50%;
+    left: 0;
+     width: 100%;
+    -webkit-transform: scale(0.5) translate(0%, -50%);
+    transform: scale(0.5) translate(0%, -50%);
+    -webkit-transform-origin: 50% 0%;
+     -ms-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+    z-index: 1;
+     opacity: 0;
+     padding: 0 30px;
+}
+figure.change h,
+figure.change p {
+  line-height: 1.5em;
+}
+figure.change h {
+  margin: 0;
+  font-weight: 800;
+  background-color:black;
+  text-transform: uppercase;
+}
+figure.change p {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 15px;
+}
+figure.chagne .su {
+  border: 2px solid #ffffff;
+  padding: 0.5em 1em;
+  font-size: 5px;
+  text-decoration: none;
+  color: #ffffff;
+  display: inline-block;
+}
+figure.change .su:hover {
+  background-color: black;
+  color: white;
+}
+figure.change:hover img,
+figure.change.hover img {
+  -webkit-animation: change 0.45s linear forwards;
+  animation: change 0.45s linear forwards;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+figure.change:hover figcaption,
+figure.change.hover figcaption {
+  -webkit-transform: scale(1) translate(0, -50%);
+  transform: scale(1) translate(0, -50%);
+  opacity: 1;
+  -webkit-transition-delay: 0.35s;
+  transition-delay: 0.35s;
+}
+@-webkit-keyframes change {
+  50% {
+    -webkit-transform: scale(0.8) translateX(0%);
+    transform: scale(0.8) translateX(0%);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(0.8) translateX(-150%);
+    transform: scale(0.8) translateX(-150%);
+    opacity: 0.5;
+  }
+}
+@keyframes change {
+  50% {
+    -webkit-transform: scale(0.8) translateX(0%);
+    transform: scale(0.8) translateX(0%);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: scale(0.8) translateX(-150%);
+    transform: scale(0.8) translateX(-150%);
+    opacity: 0.5;
+  }
+}
+    </style>
+
+</head>
+<body>
+    <div class="container hello">
+        <p>🍄밍디's 카드뉴스🍄</p>
+    </div>
+    {% for i in card.all %}
+    <div class="container">
+        <figure class = "change box1 ">
+            <img src="{{i.cardImage.url}}" style = "z-index:-5;width : 300px; height :250px; display: block; margin: 0 auto;">
+            <figcaption>
+            <h style="background-color: black;">{{i.cardName}}</h>
+            <p style="background-color: black ;">{{i.cardExplain}}</p>
+            <a href="{% url 'update' i.id %}" class="su">수정하기</a>
+            </figcaption>
+        </figure>
+        <div class = " box2 h ">
+            <p>
+                {{i.cardName}} <br>
+                {{i.cardExplain}}
+            </p>
+        </div>
+        <div class = "box3 h">
+            <p>
+                <a href = "{% url 'create'%}">새로만들기</a>
+                <a href = "{% url 'update' i.id %}">수정하기</a>
+                <a href = "{% url 'delete' i.id %}">삭제하기</a>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+
+    <Script>
+        $(".hover").mouseleave(
+        function () {
+         $(this).removeClass("hover");
+         }
+        );
+    </Script>
+</body>
+</html>

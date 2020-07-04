@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 카드뉴스 등록</title>
+    <style>
+        body{
+            width : 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: plum;
+            font-family : 배달의민족 주아;
+            font-size:30px;
+        }
+    </style>
+</head>
+<body>
+    <form action = "{%url 'create'%}" enctype="multipart/form-data" method = "POST">
+        {% csrf_token %}
+        <p>사진 등록해주세요~ </p>
+         {{form.photo}}
+        <p>몇번째 카드뉴스인가요?</p>
+        <input type = "text" name = "cardName">
+        <p>카드 뉴스의 내용을 적어주세요.</p>
+        <input type= "text" name = "cardExplain">
+        <input type="submit" value="Add" name="글쓰기">
+    </form>
+</body>
+</html>

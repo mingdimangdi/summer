@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정하기</title>
+    <style>
+         body{
+            width:100%;
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            background-color: plum;
+            flex-direction:column;
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'update' change_key.id %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        
+        
+        <p>몇번째 카드뉴스인가요?</p>
+        <input type="text" name="cardName">
+        <p>카드뉴스에 대한 내용을 적어주세요</p>
+        <textarea cols=40 rows=10 name="cardExplain"></textarea>
+
+        <div class="button">
+            <input type="submit" value="수정하기">
+        </div>
+    </form>
+</body>
+</html>
